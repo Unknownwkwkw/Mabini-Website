@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mabini Tourism</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================
+       MAIN THEME (original)
+       =========================== */
+    :root {
+      --primary: #00c6ff;
+      --accent: #2a9d8f;
+      --text-light: #f8f9fa;
+      --text-muted: #e0f7fa;
+      --bg-dark: #000;
+      --max-page-width: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    /* ===========================
+       HEADER (original + responsive)
+       =========================== */
+    header {
+      position: fixed;
+      left: 10%;
+      transform: translateX(-10%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 2rem;
+      background: rgba(0, 0, 0, 0.7);
+      width: 100%;
+      border-radius: 0 0 12px 12px;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s, padding 0.3s;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+      flex: 1;
+    }
+
+    .logo img {
+      height: 36px;
+      display: block;
+    }
+
+    nav {
+      flex: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav a {
+      position: relative;
+      color: var(--text-light);
+      text-decoration: none;
+      margin: 0 1.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0%;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .scrolled {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 0.6rem 2rem;
+    }
+
+    /* ===========================
+       HAMBURGER (ADDED)
+       - shows only on small screens
+       =========================== */
+    .hamburger {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      border: none;
+      color: var(--text-light);
+      font-size: 1.25rem;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .hamburger:focus { outline: 2px solid var(--primary); }
+
+    /* Small decorative accessible label */
+    .sr-only {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    /* ===========================
+       MAIN / HERO
+       =========================== */
+    .hero {
+      min-height: 100vh;
+      background: url("bg2.jpg") center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 2rem;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero-title .highlight {
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      background: linear-gradient(90deg, var(--primary), #0077b6);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .hero button:hover {
+      background: linear-gradient(90deg, #00ffc6, var(--accent));
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+    }
+
+    /* ===========================
+       SECTIONS (original)
+       =========================== */
+    .section {
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+
+    .attractions {
+      background: linear-gradient(120deg, var(--accent), var(--primary));
+      padding: 6rem 1rem;
+    }
+
+    .attractions h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      max-width: var(--max-page-width);
+      margin: auto;
+    }
+
+    .carousel-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .carousel-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card {
+      flex: 0 0 280px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+      overflow: hidden;
+      text-align: center;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      display: block;
+      margin: 0 auto;
+    }
+      /* Responsive card image for mobile */
+      @media (max-width: 768px) {
+        .card img {
+          height: auto;
+          max-height: 180px;
+          aspect-ratio: 16/10;
+        }
+        .card {
+          min-height: 260px;
+        }
+      }
+
+    .card-content {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      padding: 0 1rem 1rem;
+      line-height: 1.4;
+      margin: 0.5rem 0 1rem;
+      flex: 1;
+    }
+
+    .card .cta {
+      margin: 0.6rem 1rem 1rem;
+      padding: 0.6rem 0.8rem;
+      background: linear-gradient(90deg,var(--primary),#0077b6);
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 700;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .carousel-arrow {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: none;
+      font-size: 2rem;
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+      height: 48px;
+      width: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel-arrow:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* ===========================
+       CONTACT / LOCATION (redesigned)
+       =========================== */
+    .contact {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #001a2e 0%, #003d5c 50%, #00607a 100%);
+      padding: 5rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,198,255,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .contact::after {
+      content: "";
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(42,157,143,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .contact h2 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 800;
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .contact-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-info-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .contact-info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 198, 255, 0.2);
+    }
+
+    .contact-info-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-info-card p {
+      margin: 0.8rem 0;
+      color: var(--text-light);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .contact-info-card strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 198, 255, 0.4);
+    }
+
+    .contact-form {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-form h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 0 3px rgba(0, 198, 255, 0.1);
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-form button {
+      width: 100%;
+      padding: 1.1rem 2rem;
+      background: linear-gradient(135deg, var(--primary) 0%, #0088cc 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+    }
+
+    .contact-form button:hover {
+      background: linear-gradient(135deg, #00d4ff 0%, var(--accent) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 198, 255, 0.5);
+    }
+
+    .contact-form button:active {
+      transform: translateY(0);
+    }
+
+    /* Responsive contact layout */
+    @media (max-width: 992px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .contact h2 {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact {
+        padding: 3rem 1rem;
+      }
+
+      .contact h2 {
+        font-size: 1.8rem;
+      }
+
+      .contact-form {
+        padding: 1.8rem;
+      }
+
+      .contact-info-card {
+        padding: 1.5rem;
+      }
+    }
+
+    .location {
+      background: #111;
+      padding: 4rem 1rem;
+    }
+
+    .location h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .map-wrap {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .map-container {
+      width: 90%;
+      max-width: 1000px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 420px;
+      border: 0;
+      display: block;
+    }
+
+    /* ===========================
+       FOOTER
+       =========================== */
+    footer {
+      background: var(--bg-dark);
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      text-align: center;
+    }
+
+    /* ===========================
+       RESPONSIVE BREAKPOINTS
+       - keep your style but make header/hamburger & carousel responsive
+       =========================== */
+
+    /* Small screens - mobile */
+    @media (max-width: 768px) {
+      header {
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.6rem 1rem;
+      }
+
+      /* show hamburger on mobile */
+      .hamburger {
+        display: inline-flex;
+      }
+
+      /* hide desktop nav initially, toggle when hamburger clicked */
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(0,0,0,0.95);
+        width: 220px;
+        flex-direction: column;
+        padding: 1.25rem;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      nav a {
+        margin: 0.75rem 0;
+        font-size: 1.05rem;
+      }
+
+      /* hero text scale down */
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-content {
+        padding: 1.2rem;
+        border-radius: 12px;
+      }
+
+      /* carousel cards larger on small screens (80% width swipeable) */
+      .card {
+        flex: 0 0 80%;
+        min-height: 320px;
+      }
+    }
+
+    /* Medium screens - tablet */
+    @media (min-width: 769px) and (max-width: 992px) {
+      header { padding: 0.7rem 1.5rem; }
+      .hero-title { font-size: 2.6rem; }
+      .card { flex: 1 1 calc(50% - 1rem); max-width: 420px; min-height: 360px; }
+      .carousel-wrapper { gap: 0.75rem; }
+    }
+
+    /* Large screens - desktop */
+    @media (min-width: 993px) {
+      nav { display: flex !important; }
+      .hamburger { display: none !important; }
+      .carousel-container { padding: 1rem 0; }
+      .card { flex: 0 0 280px; min-height: 380px; }
+    }
+
+    /* Smooth anchor scroll support (JS will enable) */
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+  <!-- ===========================
+       HEADER (kept style, added hamburger button)
+       =========================== -->
+  <header>
+    <div class="logo" aria-hidden="false">
+      <img src="logo.png" alt="Mabini Logo" />
+      <span>Mabini Tourism</span>
+    </div>
+
+    <!-- Hamburger button (visible only on small screens) -->
+    <button class="hamburger" id="hamburger" aria-controls="main-nav" aria-expanded="false" aria-label="Open navigation menu">
+      ☰
+    </button>
+
+    <!-- Desktop nav (kept original order) -->
+    <nav id="main-nav" role="navigation" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#attractions">Attractions</a>
+       <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a href="#location">Find Us</a>
+    </nav>
+  </header>
+
+  <!-- ===========================
+       HERO
+       =========================== -->
+  <section class="hero" id="home" aria-labelledby="welcome-heading">
+    <div class="hero-content">
+      <h1 id="welcome-heading" class="hero-title">Welcome to <span class="highlight">Mabini, Batangas</span></h1>
+      <p class="hero-subtitle">Dive into paradise. Explore the mountains. Relax by the sea.</p>
+      <button onclick="document.getElementById('attractions').scrollIntoView({behavior:'smooth'})">Plan Your Visit</button>
+    </div>
+  </section>
+
+  <!-- ===========================
+       ATTRACTIONS / CAROUSEL
+       =========================== -->
+  <section class="section attractions" id="attractions" aria-labelledby="attractions-heading">
+    <h2 id="attractions-heading">Top Attractions</h2>
+    <div class="carousel-wrapper" aria-hidden="false">
+      <button class="carousel-arrow" id="scroll-left" aria-label="Scroll left">‹</button>
+
+      <div class="carousel-container" id="carousel" role="list" aria-label="Attractions list">
+        <!-- Card 1 -->
+        <article class="card" role="listitem" aria-label="Anilao Diving Spot">
+          <img src="Diving Spot.jpg" alt="Anilao Diving Spot">
+          <div class="card-content">
+            <div>
+              <h3>🤿 Anilao Diving Spot</h3>
+              <p>Known as the birthplace of scuba diving in the Philippines, Anilao offers crystal-clear waters and diverse marine life perfect for divers.</p>
+            </div>
+            <a href="#contact" class="cta">Book a Tour</a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card" role="listitem" aria-label="Sombrero Island">
+          <img src="sombrero.jpg" alt="Sombrero Island">
+          <div class="card-content">
+            <div>
+              <h3>🏝 Sombrero Island</h3>
+              <p>A serene island shaped like a hat, famous for snorkeling, white sands, and peaceful island vibes.</p>
+            </div>
+            <a href="#location" class="cta">Get Directions</a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card" role="listitem" aria-label="Mt. Gulugod Baboy">
+          <img src="gulugod.jpg" alt="Mt. Gulugod Baboy">
+          <div class="card-content">
+            <div>
+              <h3>🏔 Mt. Gulugod Baboy</h3>
+              <p>A beginner-friendly hiking spot that rewards you with panoramic views of Batangas Bay and nearby islands.</p>
+            </div>
+            <a href="#contact" class="cta">Hike with Guide</a>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="card" role="listitem" aria-label="Vivere Azure Resort">
+          <img src="vivere.jpg" alt="Vivere Azure Resort">
+          <div class="card-content">
+            <div>
+              <h3>🏖 Vivere Azure Resort</h3>
+              <p>A luxury resort where you can relax by the sea, enjoy infinity pools, and experience world-class service.</p>
+            </div>
+            <a href="#contact" class="cta">Reserve a Room</a>
+          </div>
+        </article>
+      </div>
+
+      <button class="carousel-arrow" id="scroll-right" aria-label="Scroll right">›</button>
+    </div>
+
+    <!-- extra attractions content (keeps page long) -->
+    <div style="max-width:var(--max-page-width); margin: 2rem auto; text-align:left; color:var(--text-muted);">
+      <h3 style="color:var(--text-light); margin-bottom:0.5rem;">More to explore</h3>
+      <ul style="line-height:1.8; padding-left:1.25rem;">
+        <li>Island hopping tours to nearby islets</li>
+        <li>Sunset cruises and private boat rentals</li>
+        <li>Beginner and professional dive shops with certifications</li>
+        <li>Guided nature hikes, birdwatching and landscape photography spots</li>
+        <li>Local culinary tours and cooking classes</li>
+      </ul>
+    </div>
+
+    <!-- Visitor Reviews Section -->
+
+    <section class="section" id="reviews" aria-labelledby="reviews-heading" style="background: #101820; margin-top: 3rem; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.10);">
+  <h2 id="reviews-heading" style="color: #00c6ff; margin-bottom: 2rem;">Visitor Reviews</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; min-height: 69vh; align-items: center;">
+        <!-- Review Card 1 -->
+        <div class="card" style="background: #181f2a; color: #fff; min-height: 160px; display: flex; flex-direction: column; justify-content: center;">
+          <div class="card-content">
+            <div style="display:flex; align-items:center; gap:0.7rem; margin-bottom:0.5rem;">
+              <img src="me.jpg" alt="Maria S." style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid #00c6ff;">
+              <span style="font-weight:bold; color:#00c6ff;">Christian A.</span>
+            </div>
+            <div style="margin-bottom:0.5rem; color:#ffd700; font-size:1.1rem;">★★★★★</div>
+            <div style="margin-top:0.5rem; font-size:1rem;">Amazing place! Had a wonderful experience diving in Anilao.</div>
+          </div>
+        </div>
+        <!-- Review Card 2 -->
+        <div class="card" style="background: #181f2a; color: #fff; min-height: 160px; display: flex; flex-direction: column; justify-content: center;">
+          <div class="card-content">
+            <div style="display:flex; align-items:center; gap:0.7rem; margin-bottom:0.5rem;">
+              <img src="sombrero.jpg" alt="John D." style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid #00c6ff;">
+              <span style="font-weight:bold; color:#00c6ff;">John D.</span>
+            </div>
+            <div style="margin-bottom:0.5rem; color:#ffd700; font-size:1.1rem;">★★★★☆</div>
+            <div style="margin-top:0.5rem; font-size:1rem;">The diving spots are breathtaking. Highly recommended for underwater photography!</div>
+          </div>
+        </div>
+        <!-- Review Card 3 -->
+        <div class="card" style="background: #181f2a; color: #fff; min-height: 160px; display: flex; flex-direction: column; justify-content: center;">
+          <div class="card-content">
+            <div style="display:flex; align-items:center; gap:0.7rem; margin-bottom:0.5rem;">
+              <img src="gulugod.jpg" alt="Anna P." style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid #00c6ff;">
+              <span style="font-weight:bold; color:#00c6ff;">Anna P.</span>
+            </div>
+            <div style="margin-bottom:0.5rem; color:#ffd700; font-size:1.1rem;">★★★★★</div>
+            <div style="margin-top:0.5rem; font-size:1rem;">Mt. Gulugod Baboy hike was unforgettable! The views are stunning.</div>
+          </div>
+        </div>
+        <!-- Review Card 4 -->
+        <div class="card" style="background: #181f2a; color: #fff; min-height: 160px; display: flex; flex-direction: column; justify-content: center;">
+          <div class="card-content">
+            <div style="display:flex; align-items:center; gap:0.7rem; margin-bottom:0.5rem;">
+              <img src="vivere.jpg" alt="Liza M." style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid #00c6ff;">
+              <span style="font-weight:bold; color:#00c6ff;">Liza M.</span>
+            </div>
+            <div style="margin-bottom:0.5rem; color:#ffd700; font-size:1.1rem;">★★★★★</div>
+            <div style="margin-top:0.5rem; font-size:1rem;">Vivere Azure Resort is pure luxury. Loved the infinity pool and the service!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===========================
+       CONTACT SECTION
+       =========================== -->
+  <section class="section contact" id="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact Us</h2>
+
+    <div class="contact-info" style="max-width:var(--max-page-width); margin: 1rem auto 2rem; color:var(--text-light); text-align:left;">
+      <p><strong>Email:</strong> tourism@mabini.gov.ph</p>
+      <p><strong>Phone:</strong> +63 912 345 6789</p>
+      <p>We usually reply within 1–2 business days. For urgent booking requests, please call our hotline.</p>
+    </div>
+
+    <div class="contact-form" aria-hidden="false">
+      <form id="contactForm" novalidate>
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+        <input type="tel" id="phone" name="phone" placeholder="Phone (optional)" />
+        <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <div style="margin-top:2.5rem; text-align:center;">
+      <div style="color:var(--text-muted); font-size:1rem; margin-bottom:2rem;">Or connect with us on social media</div>
+      <h3 style="color:var(--primary); font-size:1.2rem; margin-bottom:0.5rem;">Social Media Logins</h3>
+      
+      <div style="display: flex; justify-content: center; gap: 2rem; margin: 2rem 0;">
+        <!-- Social login box: Facebook -->
+        <div class="social-login-box">
+          <a href="#" aria-label="Login with Facebook" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook Logo" style="width: 40px; height: 40px; margin-bottom: 0.5rem; background: #fff; border-radius: 8px; padding: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <span style="margin-top: 0.2rem; font-weight: 600; font-size: 1rem;">Facebook</span>
+          </a>
+        </div>
+        <!-- Social login box: Instagram -->
+        <div class="social-login-box">
+          <a href="#" aria-label="Login with Instagram" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" style="width: 40px; height: 40px; margin-bottom: 0.5rem; background: #fff; border-radius: 8px; padding: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <span style="margin-top: 0.2rem; font-weight: 600; font-size: 1rem;">Instagram</span>
+          </a>
+        </div>
+        <!-- Social login box: Twitter -->
+        <div class="social-login-box">
+          <a href="#" aria-label="Login with Twitter" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter Logo" style="width: 40px; height: 40px; margin-bottom: 0.5rem; background: #fff; border-radius: 8px; padding: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <span style="margin-top: 0.2rem; font-weight: 600; font-size: 1rem;">Twitter</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  
+  <style>
+    .social-login-box {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      padding: 1.2rem 1.5rem 0.7rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 90px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .social-login-box:hover {
+      box-shadow: 0 6px 24px rgba(0,198,255,0.18);
+      transform: translateY(-3px) scale(1.04);
+      border-color: var(--primary);
+    }
+    @media (max-width: 600px) {
+      .social-login-box { padding: 0.7rem 0.7rem 0.4rem 0.7rem; min-width: 60px; }
+    }
+  </style>
+  </section>
+
+  <!-- ===========================
+       LOCATION / MAP
+       =========================== -->
+  <section class="section location" id="location" aria-labelledby="location-heading">
+    <h2 id="location-heading">Find Us on Google Maps</h2>
+    <p style="max-width:var(--max-page-width); margin: 0.5rem auto 1rem; color:var(--text-muted);">Visit Mabini, Batangas and explore its beauty. Use the map below to locate us easily.</p>
+
+    <div class="map-wrap">
+      <div class="map-container" aria-hidden="false">
+        <!-- Embedded map (keep your original) -->
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.123456789!2d120.9567!3d13.7777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMabini%2C%20Batangas!5e0!3m2!1sen!2sph!4v1694760000000" 
+          allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div style="max-width:var(--max-page-width); margin: 1.5rem auto; color:var(--text-muted); text-align:left;">
+      <h3 style="color:var(--text-light)">How to get here</h3>
+      <ol style="line-height:1.8;">
+        <li>From Manila, take the STAR Tollway towards Batangas City.</li>
+        <li>Exit at Lipa or Batangas City, then follow signs to Mabini/Anilao.</li>
+        <li>Public buses and vans (UV Express) also run regular routes — check schedules in advance.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===========================
+       EXTRA: FAQ + Accessibility Notes (longer page)
+       =========================== -->
+  <section style="padding:3rem 1rem; background:#070707;">
+    <div style="max-width:var(--max-page-width); margin:auto; color:var(--text-muted); text-align:left;">
+      <h2 style="color:var(--text-light); margin-bottom:1rem;">FAQ's</h2>
+      <details style="margin-bottom:0.75rem;">
+        <summary style="font-weight:700; cursor:pointer;">When is the best time to visit?</summary>
+        <p style="margin-top:0.5rem;">Dry season (November to May) is generally best for diving and island hopping. However, early weekdays can be quieter.</p>
+      </details>
+      <details style="margin-bottom:0.75rem;">
+        <summary style="font-weight:700; cursor:pointer;">Are there guided hikes available?</summary>
+        <p style="margin-top:0.5rem;">Yes — local guides offer half-day and full-day hikes, often including sunrise or sunset options.</p>
+      </details>
+      <details style="margin-bottom:0.75rem;">
+        <summary style="font-weight:700; cursor:pointer;">Is Mabini suitable for families?</summary>
+        <p style="margin-top:0.5rem;">Definitely — there are family-friendly resorts, calm beaches, and activities for all ages.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===========================
+       FOOTER
+       =========================== -->
+  <footer>
+    <div style="max-width:var(--max-page-width); margin:auto;">
+      <p>&copy; 2025 Mabini Tourism. All Rights Reserved.</p>
+      <p style="color:var(--text-muted); font-size:0.9rem;">Designed to help visitors explore Mabini — contact the tourism office for official information and booking assistance.</p>
+    </div>
+  </footer>
+
+  <!-- ===========================
+       SCRIPTS
+       =========================== -->
+  <script>
+    // ---------- carousel controls ----------
+    (function() {
+      const carousel = document.getElementById('carousel');
+      const leftBtn = document.getElementById('scroll-left');
+      const rightBtn = document.getElementById('scroll-right');
+
+      if (carousel && leftBtn && rightBtn) {
+        leftBtn.addEventListener('click', () => {
+          carousel.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+        rightBtn.addEventListener('click', () => {
+          carousel.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+
+        // Enable keyboard left/right arrows when focus is inside the carousel
+        carousel.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') carousel.scrollBy({ left: -320, behavior: 'smooth' });
+          if (e.key === 'ArrowRight') carousel.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+
+        // Make carousel items focusable for accessibility
+        const items = carousel.querySelectorAll('.card');
+        items.forEach(item => item.setAttribute('tabindex', '0'));
+      }
+    })();
+
+    // ---------- sticky header change on scroll ----------
+    window.addEventListener("scroll", function() {
+      const header = document.querySelector("header");
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    // ---------- mobile hamburger behavior ----------
+    (function() {
+      const hamburger = document.getElementById('hamburger');
+      const nav = document.getElementById('main-nav');
+
+      if (!hamburger || !nav) return;
+
+      // toggle function
+      function toggleNav() {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        if (nav.classList.contains('show')) {
+          nav.classList.remove('show');
+          hamburger.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.setAttribute('aria-label', 'Open navigation menu');
+        } else {
+          nav.classList.add('show');
+          hamburger.classList.add('active');
+          hamburger.setAttribute('aria-expanded', 'true');
+          hamburger.setAttribute('aria-label', 'Close navigation menu');
+        }
+      }
+
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleNav();
+      });
+
+      // close nav when clicking a link (mobile)
+      nav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A' && window.innerWidth <= 768) {
+          nav.classList.remove('show');
+          hamburger.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.setAttribute('aria-label', 'Open navigation menu');
+        }
+      });
+
+      // close nav when clicking outside
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (window.innerWidth <= 768 && nav.classList.contains('show')) {
+          if (!nav.contains(target) && !hamburger.contains(target)) {
+            nav.classList.remove('show');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.setAttribute('aria-label', 'Open navigation menu');
+          }
+        }
+      });
+
+      // close on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.classList.contains('show')) {
+          nav.classList.remove('show');
+          hamburger.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.setAttribute('aria-label', 'Open navigation menu');
+          hamburger.focus();
+        }
+      });
+
+      // Ensure nav shows again if window resized to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          nav.classList.remove('show');
+          hamburger.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.setAttribute('aria-label', 'Open navigation menu');
+        }
+      });
+    })();
+
+    // ---------- contact form simple handler (no backend) ----------
+    (function() {
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Basic front-end validation
+        const name = form.querySelector('#name').value.trim();
+        const email = form.querySelector('#email').value.trim();
+        const message = form.querySelector('#message').value.trim();
+
+        if (!name || !email || !message) {
+          alert('Please complete the required fields (Name, Email, Message).');
+          return;
+        }
+
+        // Simulate success
+        alert('Thanks ' + name + '! Your message was sent. We will contact you soon.');
+        form.reset();
+      });
+    })();
+
+    // ---------- small enhancement: make anchor links smooth and auto-close mobile nav ----------
+    (function() {
+      const links = document.querySelectorAll('nav a[href^="#"]');
+      links.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (!href || href === '#') return;
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+          // if mobile nav open, close it after click
+          const nav = document.getElementById('main-nav');
+          const hamburger = document.getElementById('hamburger');
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.setAttribute('aria-label', 'Open navigation menu');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
